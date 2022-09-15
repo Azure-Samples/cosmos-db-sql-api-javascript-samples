@@ -6,9 +6,9 @@ dotenv.config();
 import { CosmosClient } from "@azure/cosmos";
 
 // Provide required connection from environment variables
-const key = process.env.COSMOS_DB_KEY;
+const key = process.env.COSMOS_KEY;
 // Endpoint format: https://YOUR-RESOURCE-NAME.documents.azure.com:443/
-const endpoint = process.env.COSMOS_DB_ENDPOINT;
+const endpoint = process.env.COSMOS_ENDPOINT;
 
 // Uniqueness for database and container
 const timeStamp = + new Date();
