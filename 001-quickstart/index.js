@@ -107,10 +107,10 @@ const querySpec = {
 };
 
 // Get items 
-const { resources } = container.items.query(querySpec).fetchAll();
+const { resources } = await container.items.query(querySpec).fetchAll();
 
 for (const item of resources) {
-  console.log(`${item.id}: ${item.name}, ${item.sku}`);
+    console.log(`${item.id}: ${item.name}, ${item.sku}`);
 }
 
 // Delete item
