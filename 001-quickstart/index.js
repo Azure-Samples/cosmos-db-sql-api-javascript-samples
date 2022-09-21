@@ -117,12 +117,13 @@ const pageSize = 10;
 // Get pages
 while (queryIterator.hasMoreResults() && count <= pageSize) {
 
-    // Get items in page
+    // Get items as page
     const { resources: items } = await queryIterator.fetchNext();
 
     // loop through items in page
     for(let item of items){
         console.log(`${item.id}: ${item.name}, ${item.sku}`);
+        count++;
     }
 }
 
