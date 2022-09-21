@@ -106,25 +106,11 @@ const querySpec = {
     ]
 };
 
-// Get iterator for query
-const queryIterator = container.items.query(querySpec);
+// Get items 
+const { resources } = container.items.query(querySpec).fetchAll();
 
-let count = 0;
-
-// Artificially low value for quickstart
-const pageSize = 10;
-
-// Get pages
-while (queryIterator.hasMoreResults() && count <= pageSize) {
-
-    // Get items as page
-    const { resources: items } = await queryIterator.fetchNext();
-
-    // loop through items in page
-    for(let item of items){
-        console.log(`${item.id}: ${item.name}, ${item.sku}`);
-        count++;
-    }
+for (const item of resources) {
+  console.log(`${item.id}: ${item.name}, ${item.sku}`);
 }
 
 // Delete item
