@@ -2,7 +2,7 @@
   "name": "azure-cosmos-db-sql-api-quickstart",
   "version": "1.0.0",
   "description": "Azure Cosmos DB for Core (SQL) quickstart with JavaScript",
-  "main": "index.js",
+  "main": "index",
   "type": "module",
   "scripts": {
     "start": "node index.js",
