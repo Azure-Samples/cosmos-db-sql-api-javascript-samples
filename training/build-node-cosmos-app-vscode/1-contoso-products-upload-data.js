@@ -11,11 +11,10 @@ dotenv.config();
 import { CosmosClient } from "@azure/cosmos";
 
 // Provide required connection from environment variables
-const key = process.env.COSMOS_KEY;
-// Endpoint format: https://YOUR-RESOURCE-NAME.documents.azure.com:443/
-const endpoint = process.env.COSMOS_ENDPOINT;
+const cosmosSecret = process.env.COSMOS_CONNECTION_STRING;
+
 // Authenticate to Azure Cosmos DB
-const cosmosClient = new CosmosClient({ endpoint, key });
+const cosmosClient = new CosmosClient(cosmosSecret);
 
 // add timeStamp to container name so script can run multiple times
 // without issue
@@ -40,7 +39,7 @@ const { container } = await database.containers.createIfNotExists({
 });
 
 // Get product data
-const fileAndPathToJson = "../../products.json";
+const fileAndPathToJson = "products.json";
 const items = JSON.parse(await fs.readFile(path.join(__dirname, fileAndPathToJson), "utf-8"));
 
 let i = 0;
@@ -52,4 +51,7 @@ for (const item of items) {
 }
 
 // Show container name - copy/paste into .env
-console.log(`\n\ncontainerName: ${containerName}`);
+console.log(`\n\ncontainerName: ${containerName}`);// 
+
+// Run script with 
+// node 1-contoso-products-upload-data.js

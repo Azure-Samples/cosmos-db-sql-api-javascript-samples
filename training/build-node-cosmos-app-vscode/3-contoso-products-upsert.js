@@ -11,11 +11,10 @@ dotenv.config();
 import { CosmosClient } from "@azure/cosmos";
 
 // Provide required connection from environment variables
-const key = process.env.COSMOS_KEY;
-// Endpoint format: https://YOUR-RESOURCE-NAME.documents.azure.com:443/
-const endpoint = process.env.COSMOS_ENDPOINT;
+const cosmosSecret = process.env.COSMOS_CONNECTION_STRING;
+
 // Authenticate to Azure Cosmos DB
-const cosmosClient = new CosmosClient({ endpoint, key });
+const cosmosClient = new CosmosClient(cosmosSecret);
 
 // Set Database name and container name
 const databaseName = process.env.COSMOS_DATABASE_NAME;
