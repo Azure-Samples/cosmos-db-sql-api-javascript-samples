@@ -113,3 +113,5 @@ for (let item of updatedItems) {
     }, new price:  ${item.price}`
   );
 }
+
+// node 4-contoso-update-prices.js 4 1.10
