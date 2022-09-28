@@ -34,11 +34,12 @@ async function upsert(fileAndPathToJson, encoding='utf-8') {
   console.log(data);
 
   // Process request
-  const { resource } = await container.items.upsert(data);
+  const result = await container.items.upsert(data);
 
   // Show response item
   console.log("\nResponse");
-  console.log(resource);
+  console.log(`activityId: ${result.activityId}, statusCode: ${result.statusCode}`);
+  console.log(result.resource);
 }
 
 // Insert data - id = 123, no inventory
