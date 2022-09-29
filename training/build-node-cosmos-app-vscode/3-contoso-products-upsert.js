@@ -29,28 +29,27 @@ async function upsert(fileAndPathToJson, encoding='utf-8') {
   // Get item from file
   const data = JSON.parse(await fs.readFile(path.join(__dirname, fileAndPathToJson), encoding));
 
-  // Show request item
-  console.log("Request");
-  console.log(data);
-
   // Process request
+  // result.resource is the returned item
   const result = await container.items.upsert(data);
 
-  // Show response item
-  console.log("\nResponse");
-  console.log(`activityId: ${result.activityId}, statusCode: ${result.statusCode}`);
-  console.log(result.resource);
+  if(result.statusCode===201){
+    console.log("Inserted data");
+  } else if (result.statusCode===200){
+    console.log("Updated data");
+  } else {
+    console.log(`unexpected statusCode ${result.statusCode}`);
+  }
 }
 
-// Insert data - id = 123, no inventory
+// Insert data - statusCode = 201
 await upsert('./3-contoso-products-upsert-insert.json');
 
-// Update data - id = 123, inventory locations
+// Update data - statusCode = 200
 await upsert('./3-contoso-products-upsert-update.json');
 
 // Get item from container and partition key
 const { resource } = await container.item("123", "xyz").read();
 
 // Show final item
-console.log(`\nGet item from DB by Id`);
 console.log(resource);

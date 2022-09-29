@@ -1,21 +1,7 @@
 {
   "id": "123",
-  "categoryId": "3E4CEACD-D007-46EB-82D7-31F6141752B2",
   "categoryName": "xyz",
-  "sku": "FR-R38B-38 B",
   "name": "_a new item updated",
-  "description": "The product called \"LL Road Frame - Black, 38\"",
-  "price": 337.22000000000003,
-  "tags": [
-    {
-      "_id": "A2443B36-76AE-4963-9E21-368868F9C514",
-      "name": "Tag-6"
-    },
-    {
-      "_id": "F07885AF-BD6C-4B71-88B1-F04295992176",
-      "name": "Tag-149"
-    }
-  ],
   "inventory": [
     {
       "location": "Dallas",
