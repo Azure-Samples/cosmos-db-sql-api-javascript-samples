@@ -16,13 +16,9 @@ const cosmosSecret = process.env.COSMOS_CONNECTION_STRING;
 // Authenticate to Azure Cosmos DB
 const cosmosClient = new CosmosClient(cosmosSecret);
 
-// add timeStamp to container name so script can run multiple times
-// without issue
-const timeStamp = Date.now()
-
 // Set Database name and container name
 const databaseName = process.env.COSMOS_DATABASE_NAME;
-const containerName = `${process.env.COSMOS_CONTAINER_NAME}-${timeStamp}`;
+const containerName = process.env.COSMOS_CONTAINER_NAME;
 const partitionKeyPath = [`/${process.env.COSMOS_CONTAINER_PARTITION_KEY}`];
 
 // Create DB if it doesn't exist
@@ -46,8 +42,8 @@ let i = 0;
 
 // Insert products into container
 for (const item of items) {
-  const { resource } = await container.items.create(item);
-  console.log(`[${i++}] - '${resource.name}' inserted`);
+  const { resource, activityId, statusCode } = await container.items.create(item);
+  console.log(`[${i++}] activityId: ${activityId}, statusCode: ${statusCode}, ${resource.name} inserted`);
 }
 
 // Show container name - copy/paste into .env
