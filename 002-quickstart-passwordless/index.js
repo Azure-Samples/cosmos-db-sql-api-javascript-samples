@@ -86,7 +86,7 @@ for (const item of items) {
 }
 
 // Read item by id and partitionKey - least expensive `find`
-const { resource } = await container.item(items[0].id, items[0].categoryName).read();
+const { resource } = await container.item(items[0].id, items[0].categoryId).read();
 console.log(`${resource.name} read`);
 
 // Query by SQL - more expensive `find`
@@ -110,5 +110,5 @@ for (const item of resources) {
 }
 
 // // Delete item
-const { statusCode } = await container.item(items[2].id, items[2].categoryName).delete();
+const { statusCode } = await container.item(items[2].id, items[2].categoryId).delete();
 console.log(`${items[2].id} ${statusCode==204 ? `Item deleted` : `Item not deleted`}`);
